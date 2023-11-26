@@ -1,4 +1,3 @@
-Certainly! Below is a more organized and dynamic README for your GitHub repository:
 
 ---
 
