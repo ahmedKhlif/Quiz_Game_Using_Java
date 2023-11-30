@@ -2,7 +2,6 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Vector;
 
@@ -74,17 +73,20 @@ public class UnQuizz implements Modele {
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                setDifficulty("facile");
-                questions.add(reader.readLine());
-                answers.add(reader.readLine());
-                answers.add(reader.readLine());
-                answers.add(reader.readLine());
-                answers.add(reader.readLine());
-            }
+                    questions.add(reader.readLine());
+                    answers.add(reader.readLine());
+                    answers.add(reader.readLine());
+                    answers.add(reader.readLine());
+                    answers.add(reader.readLine());
+                }
+
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
-    // ... (existing methods)
+    @Override
+    public void clearQuestionsAndAnswers() {
+        questions.clear();
+        answers.clear();
+    }
 }

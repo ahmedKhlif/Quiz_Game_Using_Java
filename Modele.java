@@ -11,6 +11,9 @@ public interface Modele {
     boolean getReponse(String selectedAnswer);
 
     // Add these methods to the interface
-    void loadQuestionsAndAnswers(String fileName);
     Vector<String> getQuestions();
+
+    void loadQuestionsAndAnswers(String questionsFileName);
+
+    void clearQuestionsAndAnswers();
 }

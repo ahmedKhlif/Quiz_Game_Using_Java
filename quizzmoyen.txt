@@ -1,0 +1,12 @@
+
+Question 1: What is the largest mammal in the world?
+Blue Whale
+Elephant
+Giraffe
+Hippopotamus
+
+Question 2: In which year did World War II end?
+1942
+1945
+1950
+1939

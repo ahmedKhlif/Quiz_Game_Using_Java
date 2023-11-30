@@ -27,6 +27,7 @@ public class QuizzMain {
     private Modele modele;
     private int currentQuestion;
     private int score;
+    private String selectedDifficulty; // Add this field
 
     public QuizzMain() {
         modele = new UnQuizz();
@@ -55,8 +56,26 @@ public class QuizzMain {
             public void actionPerformed(ActionEvent e) {
                 jouerButton.setEnabled(false);
                 validerLaReponseButton.setEnabled(true);
-                modele.loadQuestionsAndAnswers("C:/dev/quizProj/src/quizz.txt");
-                displayQuestion();
+
+                // Prompt the user for difficulty
+                selectedDifficulty = (String) JOptionPane.showInputDialog(
+                        mainPanel,
+                        "Choisissez la difficulté:",
+                        "Difficulté",
+                        JOptionPane.QUESTION_MESSAGE,
+                        null,
+                        new String[]{"Facile", "Moyen", "Difficile"},
+                        "Facile");
+
+                if (selectedDifficulty != null) {
+                    String questionsFileName = "C:/dev/quizProj/src/quizz" + selectedDifficulty.toLowerCase() + ".txt";
+
+                    modele.loadQuestionsAndAnswers(questionsFileName);
+
+                    displayQuestion();
+                } else {
+                    jouerButton.setEnabled(true);
+                }
             }
         });
 
@@ -204,7 +223,7 @@ public class QuizzMain {
     }
 
     private boolean checkCorrectAnswer(String selectedAnswer) {
-        try (BufferedReader correctAnswerReader = new BufferedReader(new FileReader("C:/dev/quizProj/src/CorrectAnswers.txt"))) {
+        try (BufferedReader correctAnswerReader = new BufferedReader(new FileReader("C:/dev/quizProj/src/answer"+selectedDifficulty.toLowerCase() + ".txt"))) {
             for (int i = 0; i < currentQuestion - 1; i++) {
                 correctAnswerReader.readLine();
             }
@@ -229,6 +248,7 @@ public class QuizzMain {
         currentQuestion = 0;
         score = 0;
         modele.setScore(0);
+        modele.clearQuestionsAndAnswers(); // Add this line to clear questions and answers
         updateLabels();
     }
 
